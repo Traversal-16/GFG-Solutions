@@ -34,32 +34,32 @@ class Node
 
 class Solution
 {
-    public static void inorder (Node root1,List<Integer> inorder1)
+    public static void inorder (Node root,List<Integer> l)
     {
-        if (root1==null) return;
-        inorder (root1.left,inorder1);
-        inorder1.add (root1.data);
-        inorder (root1.right,inorder1);
+        if (root==null) return;
+        inorder (root.left,l);
+        l.add (root.data);
+        inorder (root.right,l);
     }
 	public static int countPairs(Node root1, Node root2, int x)
 	{
 		// Code here
-		List<Integer> inorder1=new ArrayList <>();
-		List<Integer> inorder2=new ArrayList <>();
-		inorder (root1,inorder1);
-		inorder (root2,inorder2);
+		List<Integer> l1=new ArrayList <>();
+		List<Integer> l2=new ArrayList <>();
+		inorder (root1,l1);
+		inorder (root2,l2);
 		int i=0;
-		int j=inorder2.size()-1;
 		int ans=0;
-		while (i<inorder1.size() &&j>=0)
+		int j=l2.size()-1;
+		while (i<l1.size() && j>=0)
 		{
-		    if (inorder1.get(i)+inorder2.get (j)==x)
+		    if (l1.get (i)+l2.get(j)==x)
 		    {
 		        ans+=1;
-		        j--;
 		        i++;
+		        j--;
 		    }
-		    else if (inorder1.get(i)+inorder2.get (j)>x)
+		    else if (l1.get (i)+l2.get(j)>x)
 		    {
 		        j--;
 		    }
